@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private INFOCAR_DBHelper myDBHelper;
     private SQLiteDatabase db;
     private EditText edtName, edtNumber;
-    private Button btnUpdata, btnInsert, btnDelete;
+    private Button btnUpdate, btnInsert, btnSelect, btnDelete;
     public RecyclerView recyclerView;
     private final String list = "";
     private final List<TEST> testList = new ArrayList<>();
@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         edtName = findViewById(R.id.edtName);
         edtNumber = findViewById(R.id.edtNumber);
-        btnUpdata = findViewById(R.id.btnInit);
+        btnUpdate = findViewById(R.id.btnUpdate);
         btnInsert = findViewById(R.id.btnInsert);
-        btnDelete = findViewById(R.id.btnSelect);
+        btnSelect = findViewById(R.id.btnSelect);
+        btnDelete = findViewById(R.id.btnDelete);
         recyclerView = findViewById(R.id.recycler_view);
 
         myDBHelper = INFOCAR_DBHelper.getInstance(this,"test.db",null,INFOCAR_DBHelper.DB_VERSION); // DB 생성
@@ -56,25 +57,28 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(main_adapter);
 
-        btnUpdata.setOnClickListener(v -> {
+        btnUpdate.setOnClickListener(v -> {
 //            myDBHelper.onUpgrade(db,1,2);
 //            db.close();
             // version 업그레이드 하면 Add column
         });
-
 
         btnInsert.setOnClickListener(v -> {
             new TEST_DataBirdge().TestInsert(new TEST(0, edtName.getText().toString(), edtNumber.getText().toString(),true));
             testList.add(new TEST(edtName.getText().toString(),edtNumber.getText().toString()));
             main_adapter.notifyDataSetChanged();
         });
-        main_adapter.notifyDataSetChanged();
+
+        btnSelect.setOnClickListener(v ->{
+
+            //new TEST_DataBirdge().TestSelect(this);
+            // if(testList.get()) // false로 바꾸고 false 면 recyclerview에서 remote 하는 로직
+            //main_adapter.notifyDataSetChanged();
+        });
 
         btnDelete.setOnClickListener(v ->{
             new TEST_DataBirdge().TestDelete(this);
 
-            // if(testList.get()) // false로 바꾸고 false 면 recyclerview에서 remote 하는 로직
-            main_adapter.notifyDataSetChanged();
         });
     }
 
