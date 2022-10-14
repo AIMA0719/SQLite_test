@@ -28,7 +28,7 @@ public class TEST_DBHelper{ // 여기는 Bridge에 있는 insert같은 함수를
         }
     }
 
-    public void TEST_delete(String list){
+    public void TEST_delete(){
         SQLiteDatabase db = INFOCAR_DBHelper.writeableDataBase;
 
         try {

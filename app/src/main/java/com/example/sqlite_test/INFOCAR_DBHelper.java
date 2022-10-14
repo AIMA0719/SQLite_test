@@ -51,7 +51,35 @@ public class INFOCAR_DBHelper extends SQLiteOpenHelper { // INFOCAR_DBHelper 부
 
     @Override // DB 버전이 바뀌었을 때 실행됨 DB_VERSION이 변수 infocar 코드 참고하자
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS TESTDB;");
-        onCreate(db);
+        try {
+            db.beginTransaction();
+            if(oldVersion<2){
+                alterColumnText(db,"TESTDB","testColumn","null");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(db != null){
+                db.endTransaction();
+            }
+        }
+    }
+
+    private void alterColumnText(SQLiteDatabase db, String table, String column, String defaultData) {
+        try {
+            db.rawQuery("select "+ column+" from "+table+" limit 1", null);
+        }catch (Exception e){
+            e.printStackTrace();
+            try {
+                if(defaultData != null){
+                    db.execSQL("ALTER TABLE "+ table +" ADD COLUMN "+ column +" TEXT DEFAULT '"+defaultData+"'");
+                }else {
+                    db.execSQL("ALTER TABLE "+ table +" ADD COLUMN "+ column +" TEXT DEFAULT null");
+                }
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
     }
 }

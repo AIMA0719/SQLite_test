@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
+        android:layout_height="20dp"
         android:orientation="horizontal"
         android:layout_weight="1">
         <TextView
@@ -18,7 +18,7 @@
             android:text="목록"/>
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/edtName"/>
 
@@ -30,7 +30,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
+        android:layout_height="20dp"
         android:orientation="horizontal"
         android:layout_weight="1">
 
@@ -40,7 +40,7 @@
             android:text="수량"/>
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/edtNumber"/>
     </LinearLayout>
@@ -49,7 +49,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
+        android:layout_height="30dp"
         android:orientation="horizontal"
         android:layout_weight="1"
         android:padding="5dp">
@@ -86,17 +86,15 @@
         android:orientation="horizontal"
         android:layout_weight="8">
 
-        <EditText
-            android:id="@+id/edtNameResult"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler_view"
+            tools:listitem="@layout/recycler_view"
+            >
 
-        <EditText
-            android:id="@+id/edtNumberResult"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 

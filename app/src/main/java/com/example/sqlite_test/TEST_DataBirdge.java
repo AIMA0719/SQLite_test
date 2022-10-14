@@ -11,13 +11,14 @@ public class TEST_DataBirdge { //이건 메인 엑티비티나 프래그먼트�
     public void TestInsert(TEST test){
         Log.e("TAG", test.toString());
         TEST_DBHelper test_dbHelper = TEST_DBHelper.getInstance(context,"test.db",null,INFOCAR_DBHelper.DB_VERSION); //객체 생성
-        test_dbHelper.TEST_insert(test.list, test.count, true); //TEST_DEHelper의 insert 함수를 통해 넣어준다.
+        test_dbHelper.TEST_insert(test.list, test.count, test.hidden); //TEST_DEHelper의 insert 함수를 통해 넣어준다.
     }
 
-    public void TestDelete(Context context, String list){
+    public void TestDelete(Context context){
         TEST_DBHelper test_dbHelper = TEST_DBHelper.getInstance(context,"test.db",null,INFOCAR_DBHelper.DB_VERSION);
-        test_dbHelper.TEST_delete(list);
+        test_dbHelper.TEST_delete();
     }
+
 
 }
 

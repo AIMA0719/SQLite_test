@@ -13,29 +13,16 @@ public class TEST {  // 객체 만들기
         this.hidden = hidden;
     }
 
-    public String getList(){
-        return list;
+    public TEST(String list, String count) {
+        this.list = list;
+        this.count = count;
     }
+
+    public String getList(){return list;}
 
     public String getCount(){
         return count;
     }
 
-//    public String setList(){
-//        return this.list = list;
-//    }
-//
-//    public int setCount(){
-//        return this.count = count;
-//    }
-
-
-    @Override
-    public String toString() {
-        return "TEST{" +
-                "list='" + list + '\'' +
-                ", count='" + count + '\'' +
-                ", id=" + id +
-                '}';
-    }
+    public boolean getHidden() { return hidden; }
 }
