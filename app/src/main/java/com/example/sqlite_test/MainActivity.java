@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private INFOCAR_DBHelper myDBHelper;
     private SQLiteDatabase db;
     private EditText edtName, edtNumber;
-    private Button btnUpdate, btnInsert, btnSelect, btnDelete;
+    private Button btnUpdate, btnInsert, btnHidden, btnDelete;
     public RecyclerView recyclerView;
     private final String list = "";
     private final List<TEST> testList = new ArrayList<>();
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         edtNumber = findViewById(R.id.edtNumber);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnInsert = findViewById(R.id.btnInsert);
-        btnSelect = findViewById(R.id.btnSelect);
+        btnHidden = findViewById(R.id.btnHidden);
         btnDelete = findViewById(R.id.btnDelete);
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -66,19 +66,23 @@ public class MainActivity extends AppCompatActivity {
         btnInsert.setOnClickListener(v -> {
             new TEST_DataBirdge().TestInsert(new TEST(0, edtName.getText().toString(), edtNumber.getText().toString(),true));
             testList.add(new TEST(edtName.getText().toString(),edtNumber.getText().toString()));
+
             main_adapter.notifyDataSetChanged();
         });
 
-        btnSelect.setOnClickListener(v ->{
+        btnHidden.setOnClickListener(v ->{
+            TEST test = new TEST();
+            new TEST_DataBirdge().TestHidden(this);
+            for(int i=0;i<testList.size();i++){
+                if(!test.getHidden()) testList.remove(testList.get(i)); // 리사이클러뷰 돌면서 false 인 position 삭제, DB 안에 데이터는 삭제 안 됨
+            }
 
-            //new TEST_DataBirdge().TestSelect(this);
-            // if(testList.get()) // false로 바꾸고 false 면 recyclerview에서 remote 하는 로직
-            //main_adapter.notifyDataSetChanged();
+            main_adapter.notifyDataSetChanged();
         });
 
         btnDelete.setOnClickListener(v ->{
             new TEST_DataBirdge().TestDelete(this);
-
+            main_adapter.notifyDataSetChanged();
         });
     }
 

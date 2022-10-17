@@ -28,13 +28,12 @@ public class TEST_DBHelper{ // 여기는 Bridge에 있는 insert같은 함수를
         }
     }
 
-    public void TEST_select(){
+    public void TEST_hidden(){
         SQLiteDatabase db = INFOCAR_DBHelper.writeableDataBase;
 
         try {
             db.beginTransaction(); // 시작
-            db.execSQL("UPDATE TESTDB SET isHidden = " + "'" + false + "'" + "WHERE isHidden = "+"'"+true + "'"+" ;"); // isHidden이 true이면 전부 false로 변경
-            //db.execSQL("SELECT "); 전부 false로 변경한다음 true 인것만 긁어옴 이러려면 where문 좀 더 생각해보자..
+            db.execSQL("UPDATE TESTDB SET isHidden = " + "'" + false + "'" + "WHERE isHidden = "+"'"+ true + "'"+" ;"); // isHidden이 true이면 전부 false로 변경
             db.setTransactionSuccessful(); // 이걸 호출하면 트랜잭션 성공한것으로 앎 endTransaction 호출 하기전에 DB 작업 금지
 
         }catch (Exception e){
@@ -59,4 +58,5 @@ public class TEST_DBHelper{ // 여기는 Bridge에 있는 insert같은 함수를
         }
 
     }
+
 }

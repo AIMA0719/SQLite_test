@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/btnSelect"
+            android:id="@+id/btnHidden"
             android:text="삭제 처럼"
             android:layout_width="wrap_content"
             android:layout_weight="1"

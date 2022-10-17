@@ -18,6 +18,10 @@ public class TEST {  // 객체 만들기
         this.count = count;
     }
 
+    public TEST() {
+
+    }
+
     public String getList(){return list;}
 
     public String getCount(){
